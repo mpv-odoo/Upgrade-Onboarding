@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_holiday_primary_action" model="ir.actions.act_window">
+            <field name="name">Holidays</field>
+            <field name="res_model">sale.holiday</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create the first Holiday
+                </p>
+            </field>
+        </record>
+        <menuitem id="sale_holiday_menu" name="Holidays" parent="sale.menu_sales_config" sequence="1" action="sale_holiday_primary_action"/>
+    </data>
+</odoo>

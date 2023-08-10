@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_document" inherit_id="website_sale_delivery.payment_delivery">
+            <!-- remove 'delivery' from the header string -->
+            <xpath expr="//h3[@t-if='delivery_nb &gt; 1']" position="replace">
+                <h3 t-if="delivery_nb &gt; 1" class="mb24">Choose a method</h3>
+            </xpath>
+        </template>
+    </data>
+</odoo>

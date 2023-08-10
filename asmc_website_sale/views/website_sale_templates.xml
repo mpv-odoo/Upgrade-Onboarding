@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="payment_inherit_asmc_website_sale" inherit_id="website_sale.payment">
+            <xpath expr="//div[@id='delivery_method']" position="replace">
+                <div t-if="delivery_nb &gt; 1" class="card border-0" id="delivery_method">
+                    <t t-if="has_non_shippable">
+                        <p>This order contains products that can't be shipped.</p>
+                    </t>
+                    <ul class="list-group">
+                        <t t-foreach="deliveries" t-as="delivery">
+                            <t t-if="has_non_shippable">
+                                <t t-if="delivery.is_pick_up">
+                                    <li class="list-group-item o_delivery_carrier_select">
+                                        <t t-call="website_sale_delivery.payment_delivery_methods"/>
+                                    </li>
+                                </t>
+                            </t>
+                            <t t-else="">
+                                <li class="list-group-item o_delivery_carrier_select">
+                                    <t t-call="website_sale_delivery.payment_delivery_methods"/>
+                                </li>
+                            </t>
+                        </t>
+                    </ul>
+                </div>
+                <div id="div_pickup_ship_date" class="mb24 mt24">
+                    <h3 class="mb24">
+                        Pick-Up/Ship Date 
+                    </h3>
+                    <div class="my-class">
+                        <input class="form-control" type="date" id="ship_pickup_date" name="ship_pickup_date" t-att-min="earliest_date" onkeydown="return false"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <template id="address_inherit_asmc_website_sale" inherit_id="website_sale.address">
+            <xpath expr="(//h2[hasclass('o_page_header')])[1]" position="replace">
+                <h2 class="o_page_header mt8">Billing Address</h2>
+            </xpath>
+            <xpath expr="(//h2[hasclass('o_page_header')])[2]" position="replace">
+                <h2 class="o_page_header mt8">Billing Address</h2>
+            </xpath>
+            <xpath expr="//input[@id='shipping_use_same']/..//span" position="before">
+                <t t-if="has_non_shippable">
+                    <span>(some products do not qualify for shipping)</span>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>
