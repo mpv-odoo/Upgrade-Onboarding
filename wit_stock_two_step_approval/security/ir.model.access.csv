@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+wit_access_stock_scrap_purchase_user,stock.scrap.user,stock.model_stock_scrap,purchase.group_purchase_user,1,1,1,0
+wit_access_stock_backorder_purchase_user,stock.backorder.confirmation,stock.model_stock_backorder_confirmation,purchase.group_purchase_user,1,1,1,1
+wit_access_stock_backorder_line_purchase_user,stock.backorder.confirmation.line,stock.model_stock_backorder_confirmation_line,purchase.group_purchase_user,1,1,1,1

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wit_view_picking_form" model="ir.ui.view">
+        <field name="name">Wit Games: Receipt Form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_validate']" position="attributes">
+                <attribute name="groups"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="first_validation_by" attrs="{'invisible':[('first_validation_by','=',False)]}"/>
+                <field name="recount_by" attrs="{'invisible':[('recount_by','=',False)]}"/>
+                <field name="second_validation_by" attrs="{'invisible':[('second_validation_by','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='quantity_done']" position="after">
+                <field name="quantity_done_first" string="First Count" attrs="{'column_invisible':['|',('parent.picking_type_code','!=','incoming'),('parent.state','not in',['recount','recount_done','done'])]}"/>
+                <field name="recount" attrs="{'column_invisible':['|',('parent.picking_type_code','!=','incoming'),('parent.state','!=','recount')]}"/>
+            </xpath>
+            <xpath expr="//page[@name='operations']" position="inside">
+                <button string="Reset Done" name="reset_done_quantities" type="object" class="float-right btn-secondary" attrs="{'invisible':['|',('picking_type_code','!=','incoming'),('state','!=','recount')]}" groups="purchase.group_purchase_user"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="wit_view_picking_internal_search" model="ir.ui.view">
+        <field name="name">Wit Games: Picking Search Filters</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='available']" position="after">
+                <filter name="recount" string="Recount" domain="[('state', '=', 'recount')]" help="Pickings needing a recount"/>
+                <filter name="recount_done" string="Recount Done" domain="[('state', '=', 'recount_done')]" help="Pickings already recounted"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
