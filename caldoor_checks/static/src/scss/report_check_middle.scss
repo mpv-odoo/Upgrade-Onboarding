@@ -1,0 +1,28 @@
+.ckus_middle_page {
+    .ckus_date_text {
+        display: none !important;
+    }
+    .ckus_date {
+        top: 1in !important;
+        left: 5in !important;
+    }
+    .ckus_payee_addr > * {
+        padding: 0;
+        margin: 2px;
+        font-size: 14px;
+    }
+    .ckus_amount_text {
+        display: none !important;
+    }
+    .ckus_amount {
+        top: 1in !important;
+        left: 6.5in !important;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .ckus_amount_in_word {
+        top: .6in !important;
+        left: -.2in !important;
+        font-size: 13px !important;
+    }
+}

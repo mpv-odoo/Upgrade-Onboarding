@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add new stylesheet to assets -->
+        <template id="assets_common" name="caldoor check assets" inherit_id="web.report_assets_common">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/scss" href="/caldoor_checks/static/src/scss/report_check_middle.scss"/>
+            </xpath>
+        </template>
+        <!-- Changes to the check layout  for the middle-->
+        <template id="ckus_check_inherit_caldoor" inherit_id="l10n_us_check_printing.ckus_check">
+            <!-- Hide the customer's name that's right above the amount -->
+            <xpath expr="//div[hasclass('ckus_payee_name')]" position="replace">
+            </xpath>
+            <!-- Change the memo part with the partner's account no -->
+            <xpath expr="//div[hasclass('ckus_memo')]" position="replace">
+                <div class="ckus_memo" t-esc="page['partner_id'].account_no"/>
+            </xpath>
+
+            <!-- Replace the existing address widget field with a div that has all of
+            the same fields besides 'country' -->
+            <xpath expr="//div[hasclass('ckus_payee_addr')]" position="replace">
+                <div class="ckus_payee_addr">
+                    <p t-esc="page['partner_id'].name"/>
+                    <p t-esc="page['partner_id'].street"/>
+                    <p t-esc="page['partner_id'].street2"/>
+                    <p t-esc="(page['partner_id'].city if page['partner_id'].city else '') + ' ' + (page['partner_id'].state_id.code if page['partner_id'].state_id else '') + ' ' + (page['partner_id'].zip if page['partner_id'].zip else '')"/>
+                </div>
+            </xpath>
+        </template>
+        <!-- Change the top and bottom check layout -->
+        <template id="ckus_stub_inherit_caldoor" inherit_id="l10n_us_check_printing.ckus_stub">
+            <!-- Replace description with Vendor Reference/Invoice Number to the top and bottom stubs -->
+            <xpath expr="//thead/tr/th[2]" position="replace">
+                <th>Invoice Number</th>
+            </xpath>
+            <xpath expr="//td[2]" position="replace">
+                <td class="text-left text-truncate" style="max-width: 500px;"><t t-esc="stub_line['reference']"/></td>
+            </xpath>
+            <!-- Replace Due Date with Invoice Date -->
+            <xpath expr="//thead/tr/th[1]" position="replace">
+                <th>Invoice Date</th>
+            </xpath>
+            <xpath expr="//td[1]" position="replace">
+                <td class="text-left"><t t-if="stub_line['invoice_date']" t-esc="stub_line['invoice_date']"/></td>
+            </xpath>
+            
+
+        </template>
+    </data>
+</odoo>
