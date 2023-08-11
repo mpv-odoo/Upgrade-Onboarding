@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wit_product_landed_cost" model="product.product">
+        <field name="name">Landed Cost</field>
+        <field name="type">service</field>
+        <field name="landed_cost_ok">True</field>
+    </record>
+</odoo>

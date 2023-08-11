@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+wit_access_stock_landed_cost,stock.landed.cost,stock_landed_costs.model_stock_landed_cost,stock.group_stock_user,1,1,1,1
+wit_access_stock_landed_cost_lines,stock.landed.cost.lines,stock_landed_costs.model_stock_landed_cost_lines,stock.group_stock_user,1,1,1,1
+wit_access_stock_valuation_adjustment_lines,stock.valuation.adjustment.lines,stock_landed_costs.model_stock_valuation_adjustment_lines,stock.group_stock_user,1,1,1,1
+wit_access_stock_valuation_layers,stock.valuation.layer,stock_landed_costs.model_stock_valuation_layer,stock.group_stock_user,1,1,1,1
+wit_access_stock_landed_cost_purchase,stock.landed.cost,stock_landed_costs.model_stock_landed_cost,purchase.group_purchase_user,1,1,1,1
+wit_access_stock_landed_cost_lines_purchase,stock.landed.cost.lines,stock_landed_costs.model_stock_landed_cost_lines,purchase.group_purchase_user,1,1,1,1
+wit_access_stock_valuation_adjustment_lines_purchase,stock.valuation.adjustment.lines,stock_landed_costs.model_stock_valuation_adjustment_lines,purchase.group_purchase_user,1,1,1,1
+wit_access_stock_valuation_layers_purchase,stock.valuation.layer,stock_landed_costs.model_stock_valuation_layer,purchase.group_purchase_user,1,1,1,1
