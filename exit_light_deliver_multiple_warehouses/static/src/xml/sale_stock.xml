@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template t-name="exit_light_deliver_multiple_warehouses.QtyDetailPopOver" t-inherit="sale_stock.QtyDetailPopOver"
+              t-inherit-mode="extension">
+        <xpath expr="//table/tbody" position="inside">
+            <strong>Current Warehouse</strong>
+        </xpath>
+        <!-- Add the table for stock details added in popup. -->
+        <xpath expr="//button[hasclass('action_open_forecast')]" position="before">
+            <div class="data">
+                <strong>All Warehouses Stock</strong>
+                <table class="table table-bordered table-sm">
+                    <tbody style="max-height:250px;display:block;overflow-y:scroll;">
+                        <tr>
+                            <th>Warehouse</th>
+                            <th>Quantity</th>
+                        </tr>
+                        <t t-if="data.quant_data">
+                            <t t-foreach="data.quant_data" t-as="stock_quant">
+                                <tr>
+                                    <td>
+                                        <t t-esc="stock_quant.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="stock_quant.free_qty"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </xpath>
+    </template>
+    <!-- Set the color of the warehouse widget button to be green if there is stock in any warehouse, and red if there isn't. -->
+    <template t-name="exit_light_deliver_multiple_warehouses.qtyAtDate" t-inherit="sale_stock.qtyAtDate"
+              t-inherit-mode="extension">
+        <xpath expr="//a" position="attributes">
+            <attribute name="t-attf-class">fa fa-area-chart {{ widget.data.inStock ? 'text-primary' : 'text-danger' }}
+            </attribute>
+        </xpath>
+    </template>
+</odoo>
